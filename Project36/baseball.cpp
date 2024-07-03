@@ -18,11 +18,18 @@ public:
 		if (answer == guessNumber) {
 			return { true, 3, 0 };
 		}
-		return { false, 2, 0 };
+
+		for (int i = 0; i < ANSWER_LENGTH; i++) {
+			if (answer[i] == guessNumber[i]
+				&& answer[(i + 1)% ANSWER_LENGTH] == guessNumber[(i + 1) % ANSWER_LENGTH]
+				&& answer[(i + 2) % ANSWER_LENGTH] != guessNumber[(i + 2) % ANSWER_LENGTH]) {
+				return { false, 2, 0 };
+			}
+		}
 	}
 	void assertIllegalArgument(const std::string& guessNumber)
 	{
-		if (guessNumber.length() != 3) {
+		if (guessNumber.length() != ANSWER_LENGTH) {
 			throw length_error("Input must be three letters.");
 		}
 		for (char c : guessNumber) {
@@ -41,4 +48,5 @@ public:
 	}
 private:
 	string answer;
+	const int ANSWER_LENGTH = 3;
 };
