@@ -26,6 +26,7 @@ public:
 				return { false, 2, 0 };
 			}
 		}
+		return { false, 1, 2 };
 	}
 	void assertIllegalArgument(const std::string& guessNumber)
 	{
