@@ -27,3 +27,10 @@ TEST_F(BaseballFixture, CorrectAnswer) {
 	EXPECT_EQ(3, result.strikes);
 	EXPECT_EQ(0, result.balls);
 }
+
+TEST_F(BaseballFixture, Strikes2Balls0Answer) {
+	GuessResult result = game.guess("127");
+	EXPECT_FALSE(result.solved);
+	EXPECT_EQ(2, result.strikes);
+	EXPECT_EQ(0, result.balls);
+}

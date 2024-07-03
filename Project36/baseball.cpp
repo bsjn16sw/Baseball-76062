@@ -18,6 +18,7 @@ public:
 		if (answer == guessNumber) {
 			return { true, 3, 0 };
 		}
+		return { false, 2, 0 };
 	}
 	void assertIllegalArgument(const std::string& guessNumber)
 	{
