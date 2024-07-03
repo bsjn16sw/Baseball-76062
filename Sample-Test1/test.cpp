@@ -18,4 +18,5 @@ public:
 TEST_F(BaseballFixture, ThrowExcptInvalidInput) {
 	assertIllegalArgument("12");
 	assertIllegalArgument("12s");
+	assertIllegalArgument("121");
 }
