@@ -15,18 +15,32 @@ public:
 	}
 	GuessResult guess(const string& guessNumber) {
 		assertIllegalArgument(guessNumber);
+
 		if (answer == guessNumber) {
 			return { true, 3, 0 };
 		}
 
+		int strikes = calcStrikes(guessNumber);
+		int balls = calcBalls(guessNumber);
+		return { false, strikes, balls };
+	}
+	int calcStrikes(const std::string& guessNumber)
+	{
+		int strikes = 0;
 		for (int i = 0; i < ANSWER_LENGTH; i++) {
-			if (answer[i] == guessNumber[i]
-				&& answer[(i + 1)% ANSWER_LENGTH] == guessNumber[(i + 1) % ANSWER_LENGTH]
-				&& answer[(i + 2) % ANSWER_LENGTH] != guessNumber[(i + 2) % ANSWER_LENGTH]) {
-				return { false, 2, 0 };
+			if (answer[i] == guessNumber[i])	strikes++;
+		}
+		return strikes;
+	}
+	int calcBalls(const std::string& guessNumber)
+	{
+		int balls = 0;
+		for (int i = 0; i < ANSWER_LENGTH; i++) {
+			for (int j = 0; j < ANSWER_LENGTH; j++) {
+				if (i != j && answer[i] == guessNumber[j])	balls++;
 			}
 		}
-		return { false, 1, 2 };
+		return balls;
 	}
 	void assertIllegalArgument(const std::string& guessNumber)
 	{
